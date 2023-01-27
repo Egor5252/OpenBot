@@ -106,7 +106,7 @@ def handle_message(message):
                     print(mes.mes)
                 except:
                     print(mes.mes)
-                    bot.send_message(chat_id=message.from_user.id, text='Повторите попытку')
+                    bot.send_message(chat_id=message.from_user.id, text='Превышен лимит символов')
 
 
 bot.polling()

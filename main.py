@@ -76,7 +76,7 @@ def handle_message(message):
                     bot.send_message(chat_id=message.from_user.id,
                                      text=GoogleTranslator(source='auto', target='ru').translate(
                                          response['choices'][0]['text']))
-                except ZeroDivisionError:
+                except:
                     print('Ошибка')
                     bot.send_message(chat_id=message.from_user.id, text='Повторите попытку')
 

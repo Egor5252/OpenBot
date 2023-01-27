@@ -24,7 +24,6 @@ print("Бот запущен")
 
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
-    #print(message.text)
     mes.mes = mes.mes + '\nYou: ' + message.text + '\nComputer:'
     try:
         response = openai.Completion.create(
@@ -37,8 +36,6 @@ def handle_message(message):
             presence_penalty=0.0,
             stop=['You:']
         )
-        #print(response['choices'][0]['text'])
-        # print(GoogleTranslator(source='auto', target='ru').translate(response['choices'][0]['text']))
         bot.send_message(chat_id=message.from_user.id, text=response['choices'][0]['text'])
         bot.send_message(chat_id=message.from_user.id,
                          text=GoogleTranslator(source='auto', target='ru').translate(response['choices'][0]['text']))
@@ -56,8 +53,6 @@ def handle_message(message):
                 presence_penalty=0.0,
                 stop=['You:']
             )
-            # print(response['choices'][0]['text'])
-            # print(GoogleTranslator(source='auto', target='ru').translate(response['choices'][0]['text']))
             bot.send_message(chat_id=message.from_user.id, text=response['choices'][0]['text'])
             bot.send_message(chat_id=message.from_user.id,
                              text=GoogleTranslator(source='auto', target='ru').translate(
@@ -76,8 +71,6 @@ def handle_message(message):
                     presence_penalty=0.0,
                     stop=['You:']
                 )
-                # print(response['choices'][0]['text'])
-                # print(GoogleTranslator(source='auto', target='ru').translate(response['choices'][0]['text']))
                 bot.send_message(chat_id=message.from_user.id, text=response['choices'][0]['text'])
                 bot.send_message(chat_id=message.from_user.id,
                                  text=GoogleTranslator(source='auto', target='ru').translate(
@@ -96,8 +89,6 @@ def handle_message(message):
                         presence_penalty=0.0,
                         stop=['You:']
                     )
-                    # print(response['choices'][0]['text'])
-                    # print(GoogleTranslator(source='auto', target='ru').translate(response['choices'][0]['text']))
                     bot.send_message(chat_id=message.from_user.id, text=response['choices'][0]['text'])
                     bot.send_message(chat_id=message.from_user.id,
                                      text=GoogleTranslator(source='auto', target='ru').translate(

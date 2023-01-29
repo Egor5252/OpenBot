@@ -130,4 +130,4 @@ def handle_message(message):
                         bot.send_message(chat_id=message.from_user.id, text='Ошибка')
 
 
-bot.polling()
+bot.polling(none_stop=True, interval=0)

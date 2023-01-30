@@ -21,13 +21,17 @@ def handle_message(message):
         f.write(mes.mes)
         f.close()
         bot.send_message(chat_id=message.from_user.id, text='Задавайте любые вопрысы!')
-    elif message.text == '/image':
+    elif message.text.find('/image') == 0:
+        bot.send_message(chat_id=message.from_user.id, text='Генерация...')
         image = openai.Image.create(
-            prompt="A cute baby sea otter",
-            n=2,
+            prompt=message.text.removeprefix('/image '),
+            n=1,
             size="1024x1024"
         )
-        print(image)
+        bot.send_photo(chat_id=message.from_user.id, photo=image.data[0].url)
+        bot.send_document(chat_id=message.from_user.id, document=image.data[0].url)
+        bot.send_photo(chat_id=message.from_user.id, photo=image.data[1].url)
+        bot.send_document(chat_id=message.from_user.id, document=image.data[1].url)
 
 
 @bot.message_handler(func=lambda message: True)

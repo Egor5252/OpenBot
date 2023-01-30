@@ -27,11 +27,12 @@ def handle_message(message):
 def handle_message(message):
     f = open(f'Logs/{message.from_user.id}.txt', 'r')
     zapros = f.read() + '\nYou: ' + message.text + '\nComputer:'
+    print(zapros)
     f.close()
     try:
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt=mes.mes,
+            prompt=zapros,
             temperature=0.5,
             max_tokens=1000,
             top_p=1,
@@ -43,6 +44,7 @@ def handle_message(message):
         bot.send_message(chat_id=message.from_user.id,
                          text=GoogleTranslator(source='auto', target='ru').translate(response['choices'][0]['text']))
         zapros = zapros + response['choices'][0]['text']
+        f = open(f'Logs/{message.from_user.id}.txt', 'w')
         f.write(zapros)
         f.close()
     except:

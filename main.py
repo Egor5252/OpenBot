@@ -20,12 +20,12 @@ def handle_message(message):
         f = open(f'Logs/{message.from_user.id}.txt', 'w')
         f.write(mes.mes)
         f.close()
-        bot.send_message(chat_id=message.from_user.id, text='Задавайте любые вопрысы!')
+        bot.send_message(chat_id=message.from_user.id, text='Задавайте любые вопрысы или генерируйте картинки по описанию через /image ОПИСАНИЕ')
     elif message.text.find('/image') == 0:
         bot.send_message(chat_id=message.from_user.id, text='Генерация...')
         image = openai.Image.create(
             prompt=message.text.removeprefix('/image '),
-            n=1,
+            n=2,
             size="1024x1024"
         )
         bot.send_photo(chat_id=message.from_user.id, photo=image.data[0].url)

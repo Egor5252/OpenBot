@@ -6,14 +6,13 @@ import mes
 
 openai.api_key = APIs.API_KEY_OPENAI  # Api ключ OpenAI
 bot = telebot.TeleBot(APIs.API_KEY_TELEGRAM_BOT)  # Api ключ Telegram бота
-file = "f'Logs/{message.from_user.id}.txt'"
 
 
 @bot.message_handler(commands=['start', 'clear'])
 def handle_message(message):
     print('Команда обнаружена')
     if message.text == '/clear':
-        f = open(file, 'a')
+        f = open(f'Logs/{message.from_user.id}.txt', 'w')
         f.write(mes.mes)
         f.close()
         bot.send_message(chat_id=message.from_user.id, text='Память бота очищена')

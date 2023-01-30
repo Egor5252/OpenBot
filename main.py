@@ -4,12 +4,11 @@ from deep_translator import GoogleTranslator
 import APIs
 import mes
 
-
 openai.api_key = APIs.API_KEY_OPENAI  # Api ключ OpenAI
 bot = telebot.TeleBot(APIs.API_KEY_TELEGRAM_BOT)  # Api ключ Telegram бота
 
 
-@bot.message_handler(commands=['start', 'clear'])
+@bot.message_handler(commands=['start', 'clear', 'image'])
 def handle_message(message):
     print('Команда обнаружена')
     if message.text == '/clear':
@@ -22,6 +21,13 @@ def handle_message(message):
         f.write(mes.mes)
         f.close()
         bot.send_message(chat_id=message.from_user.id, text='Задавайте любые вопрысы!')
+    elif message.text == '/image':
+        image = openai.Image.create(
+            prompt="A cute baby sea otter",
+            n=2,
+            size="1024x1024"
+        )
+        print(image)
 
 
 @bot.message_handler(func=lambda message: True)

@@ -19,6 +19,8 @@ def handle_message(message):
                   'agitated around humans if they feel threatened or scared.'
         bot.send_message(chat_id=message.from_user.id, text='Память бота очищена')
     elif message.text == '/start':
+        f = open(f'Logs/{message.from_user.id}.txt', 'w+')
+        f.write(mes.mes)
         bot.send_message(chat_id=message.from_user.id, text='Задавайте любые вопрысы!')
 
 

@@ -4,6 +4,7 @@ from deep_translator import GoogleTranslator
 import APIs
 import mes
 
+
 openai.api_key = APIs.API_KEY_OPENAI  # Api ключ OpenAI
 bot = telebot.TeleBot(APIs.API_KEY_TELEGRAM_BOT)  # Api ключ Telegram бота
 
@@ -27,7 +28,6 @@ def handle_message(message):
 def handle_message(message):
     f = open(f'Logs/{message.from_user.id}.txt', 'r')
     zapros = f.read() + '\nYou: ' + message.text + '\nComputer:'
-    print(zapros)
     f.close()
     try:
         response = openai.Completion.create(
